@@ -1,262 +1,328 @@
-# Online Pharmacy & Medicine Management System
+# Online Pharmacy Management System
 
-A full-stack MERN (MongoDB, Express.js, React.js, Node.js) application for managing an online pharmacy with prescription-based medicine ordering.
+A comprehensive full-stack application for managing online pharmacy operations with web and mobile applications.
 
-## Features
+## 🏥 Project Overview
 
-### Core Features
-- **Prescription-Based Ordering**: Customers upload prescriptions, pharmacists review and add medicines to cart
-- **Role-Based Access Control**: Four user roles - Customer, Pharmacist, Admin, Supplier
-- **JWT Authentication**: Secure login and registration with bcrypt password hashing
-- **Medicine Management**: CRUD operations with stock and expiry tracking
-- **Inventory Alerts**: Automatic low stock and expiry notifications
-- **Order Management**: Track orders from processing to delivery
-- **Cart Management**: Real-time price calculation with delivery charges
-- **Supplier Management**: Track suppliers and their products
+The Online Pharmacy Management System is a modern digital platform that streamlines pharmacy operations, enhances customer experience, and improves medication management through web and mobile technologies.
 
-### User Roles
+## ✨ Key Features
 
-#### Customer (Patient)
-- Register and login
-- Upload prescription images (JPG/PNG/PDF)
-- Track prescription status (Pending → Reviewed → Completed)
-- View cart with medicines added by pharmacist
-- Update quantities and proceed to checkout
-- View order history and track status
-- Manage profile
+### Core Functionality
+- **Multi-Platform Support**: Web application + React Native mobile app
+- **Prescription-Based Ordering**: Upload prescriptions, pharmacist review, and medicine dispensing
+- **Role-Based Access**: Customer, Pharmacist, Admin, and Supplier roles
+- **Real-Time Communication**: Support tickets and AI-powered chatbot
+- **Inventory Management**: Stock tracking, alerts, and supplier management
+- **Order Processing**: Complete order lifecycle from placement to delivery
 
-#### Pharmacist
-- Review uploaded prescriptions
-- Add medicines to customer cart
-- Set quantities and prices
-- Manage orders and update status
-- View medicine inventory
+### User Roles & Features
 
-#### Administrator
-- Full system access
-- Manage medicines (CRUD)
-- Manage suppliers (CRUD)
-- Manage users (activate/deactivate)
-- View analytics and reports
-- Remove expired medicines
+#### 👤 Customer
+- User registration and authentication
+- Prescription upload and management
+- Medicine browsing and ordering
+- Cart management and checkout
+- Order tracking and history
+- Profile management
+- Support ticket creation
+- AI chatbot assistance
 
-#### Supplier
-- Basic profile management
-- View supplied medicines
+#### 👨‍⚕️ Pharmacist
+- Prescription review and approval
+- Medicine dispensing and cart management
+- Order fulfillment and tracking
+- Inventory monitoring
+- Customer communication
 
-## Tech Stack
+#### 👨‍💼 Administrator
+- User management and system configuration
+- Medicine and supplier management
+- Analytics and reporting
+- Support ticket management
+- System monitoring
+
+#### 🏭 Supplier
+- Product catalog management
+- Order processing and invoicing
+- Performance tracking
+- Communication with pharmacy
+
+## 🛠 Technology Stack
 
 ### Backend
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
-- **MongoDB** - Database
-- **Mongoose** - ODM
-- **JWT** - Authentication
-- **bcryptjs** - Password hashing
-- **Multer** - File upload handling
-- **Cloudinary** - Image storage (optional, can use local)
+- **MongoDB** - Database with Mongoose ODM
+- **JWT** - Authentication and authorization
+- **Socket.io** - Real-time communication
+- **Cloudinary** - File storage
+- **Nodemailer** - Email services
 
-### Frontend
+### Frontend (Web)
 - **React 18** - UI library
 - **React Router** - Navigation
-- **Axios** - HTTP client
 - **Tailwind CSS** - Styling
-- **Lucide React** - Icons
+- **Axios** - HTTP client
 - **Recharts** - Analytics charts
 
-## Installation
+### Mobile App
+- **React Native** - Mobile framework
+- **Expo** - Development platform
+- **Expo Router** - Navigation
+- **React Native WebView** - Chatbot integration
+
+## 📱 Mobile App Features
+
+### Native Capabilities
+- Camera integration for prescription uploads
+- Push notifications for order updates
+- Offline support for basic functionality
+- Biometric authentication
+- Location-based services
+
+### Support System
+- In-app support ticket creation
+- AI-powered chatbot with Jotform integration
+- Real-time messaging with support staff
+- Fallback contact form
+
+## 🚀 Installation & Setup
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- Node.js (v16 or higher)
 - MongoDB (local or Atlas)
 - npm or yarn
+- Expo CLI (for mobile development)
 
-### Step 1: Clone the Repository
+### Quick Start
+
+1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd pharmacy-system
+git clone https://github.com/IT23837294/WMT-mobile-app.git
+cd WMT-mobile-app
 ```
 
-### Step 2: Install Backend Dependencies
+2. **Backend Setup**
 ```bash
 cd backend
 npm install
+cp .env.example .env
+# Configure your environment variables
+npm start
 ```
 
-### Step 3: Configure Environment Variables
-Create a `.env` file in the backend directory:
-```
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/pharmacy_system
-JWT_SECRET=your_jwt_secret_key_here_change_in_production
-CLOUDINARY_CLOUD_NAME=your_cloud_name (optional)
-CLOUDINARY_API_KEY=your_api_key (optional)
-CLOUDINARY_API_SECRET=your_api_secret (optional)
-NODE_ENV=development
-```
-
-### Step 4: Install Frontend Dependencies
-```bash
-cd ../frontend
-npm install
-```
-
-### Step 5: Start the Application
-
-#### Start Backend
-```bash
-cd backend
-npm run dev
-```
-
-#### Start Frontend (in a new terminal)
+3. **Frontend Setup**
 ```bash
 cd frontend
+npm install
 npm run dev
 ```
 
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
+4. **Mobile App Setup**
+```bash
+cd mobile
+npm install
+# Set environment variables
+EXPO_PUBLIC_API_BASE_URL=http://your-device-ip:5001/api
+npx expo start
+```
 
-## API Documentation
+### Environment Variables
 
-### Authentication Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/auth/register | Register new user |
-| POST | /api/auth/login | Login user |
-| GET | /api/auth/me | Get current user |
-| PUT | /api/auth/profile | Update profile |
-| PUT | /api/auth/change-password | Change password |
-| GET | /api/auth/users | Get all users (Admin) |
-| PUT | /api/auth/users/:id/toggle-status | Toggle user status (Admin) |
+#### Backend (.env)
+```
+PORT=5001
+MONGODB_URI=mongodb://localhost:27017/pharmacy_system
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
 
-### Medicine Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/medicines | Get all medicines |
-| GET | /api/medicines/:id | Get single medicine |
-| POST | /api/medicines | Create medicine (Admin/Pharmacist) |
-| PUT | /api/medicines/:id | Update medicine (Admin/Pharmacist) |
-| DELETE | /api/medicines/:id | Delete medicine (Admin) |
-| GET | /api/medicines/categories | Get categories |
-| GET | /api/medicines/alerts | Get stock/expiry alerts |
+#### Mobile
+```
+EXPO_PUBLIC_API_BASE_URL=http://your-device-ip:5001/api
+```
 
-### Prescription Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/prescriptions/upload | Upload prescription (Customer) |
-| GET | /api/prescriptions/my-prescriptions | Get my prescriptions (Customer) |
-| GET | /api/prescriptions | Get all prescriptions (Pharmacist/Admin) |
-| GET | /api/prescriptions/:id | Get prescription details |
-| PUT | /api/prescriptions/:id/review | Review prescription (Pharmacist/Admin) |
-| PUT | /api/prescriptions/:id/reject | Reject prescription (Pharmacist/Admin) |
+## 📊 API Documentation
 
-### Cart Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/cart | Get cart |
-| POST | /api/cart/add | Add item to cart |
-| PUT | /api/cart/item/:id | Update cart item |
-| DELETE | /api/cart/item/:id | Remove from cart |
-| DELETE | /api/cart/clear | Clear cart |
+### Authentication
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `GET /api/auth/me` - Get current user
+- `PUT /api/auth/profile` - Update profile
 
-### Order Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/orders | Create order |
-| GET | /api/orders/my-orders | Get my orders (Customer) |
-| GET | /api/orders | Get all orders (Pharmacist/Admin) |
-| GET | /api/orders/:id | Get order details |
-| PUT | /api/orders/:id/status | Update order status |
-| PUT | /api/orders/:id/cancel | Cancel order |
-| GET | /api/orders/stats/overview | Get order statistics (Admin) |
+### Medicines
+- `GET /api/medicines` - Get all medicines
+- `POST /api/medicines` - Create medicine (Admin/Pharmacist)
+- `PUT /api/medicines/:id` - Update medicine
+- `GET /api/medicines/categories` - Get categories
 
-### Supplier Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/suppliers | Get all suppliers (Admin) |
-| GET | /api/suppliers/:id | Get supplier details (Admin) |
-| POST | /api/suppliers | Create supplier (Admin) |
-| PUT | /api/suppliers/:id | Update supplier (Admin) |
-| DELETE | /api/suppliers/:id | Delete supplier (Admin) |
-| GET | /api/suppliers/stats | Get supplier stats (Admin) |
+### Orders
+- `POST /api/orders` - Create order
+- `GET /api/orders/my-orders` - Get user orders
+- `PUT /api/orders/:id/status` - Update order status
 
-## Database Schema
+### Support
+- `POST /api/tickets` - Create support ticket
+- `GET /api/tickets/my` - Get user tickets
+- `GET /api/tickets` - Get all tickets (Admin)
 
-### Collections
-1. **Users** - Customer, Pharmacist, Admin, Supplier data
-2. **Medicines** - Medicine inventory with stock tracking
-3. **Prescriptions** - Customer prescription uploads
-4. **Carts** - Shopping cart data
-5. **Orders** - Order details and tracking
-6. **Suppliers** - Supplier information
+### Prescriptions
+- `POST /api/prescriptions/upload` - Upload prescription
+- `GET /api/prescriptions/my-prescriptions` - Get user prescriptions
+- `PUT /api/prescriptions/:id/review` - Review prescription
 
-## Demo Credentials
+## 🗄 Database Schema
 
-Use these accounts for testing:
+### Core Collections
+- **Users** - Authentication and profile data
+- **Medicines** - Product catalog and inventory
+- **Orders** - Order management and tracking
+- **Prescriptions** - Prescription processing
+- **Support Tickets** - Customer support system
+- **Suppliers** - Supplier management
+- **Reviews** - Product and service reviews
 
-- **Admin**: admin@example.com / admin123
-- **Pharmacist**: pharma@example.com / pharma123
-- **Customer**: customer@example.com / customer123
+## 📱 Mobile App Access
 
-## Folder Structure
+### Development
+- **Web Version**: http://localhost:8083
+- **Expo Go**: Scan QR code from terminal
+- **Direct URL**: exp://your-device-ip:8083
 
+### Production
+- Available on iOS and Android app stores
+
+## 🔧 Development Workflow
+
+### Git Workflow
+```bash
+# Create feature branch
+git checkout -b feature/new-feature
+
+# Make changes and commit
+git add .
+git commit -m "Add new feature"
+
+# Push to branch
+git push origin feature/new-feature
+
+# Create pull request
+```
+
+### Code Structure
 ```
 pharmacy-system/
-├── backend/
-│   ├── config/          # Database configuration
-│   ├── controllers/     # Route controllers
-│   ├── middleware/      # Auth, error handling, upload
-│   ├── models/          # Mongoose models
-│   ├── routes/          # API routes
-│   ├── uploads/         # Uploaded files
-│   ├── utils/           # Utility functions
-│   ├── .env             # Environment variables
-│   ├── package.json
-│   └── server.js        # Entry point
-├── frontend/
+├── backend/                 # Node.js API server
+│   ├── controllers/         # Route handlers
+│   ├── models/             # Database models
+│   ├── routes/             # API routes
+│   ├── middleware/         # Auth, validation
+│   └── config/             # Database config
+├── frontend/               # React web app
 │   ├── src/
-│   │   ├── components/  # Reusable components
-│   │   ├── context/     # React context (Auth)
-│   │   ├── pages/       # Page components
-│   │   │   ├── customer/    # Customer pages
-│   │   │   ├── pharmacist/  # Pharmacist pages
-│   │   │   └── admin/       # Admin pages
-│   │   ├── services/    # API services
-│   │   ├── App.jsx      # Main app component
-│   │   ├── main.jsx     # Entry point
-│   │   └── index.css    # Global styles
-│   ├── index.html
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── vite.config.js
-└── README.md
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/         # Page components
+│   │   └── services/      # API services
+├── mobile/                 # React Native app
+│   ├── app/               # Expo Router pages
+│   ├── components/        # Mobile components
+│   └── src/              # App utilities
+└── SE2020_Documentation/   # Assignment documentation
 ```
 
-## Features to Add
+## 🧪 Testing
 
-- [ ] Email notifications for prescription reviews
-- [ ] Multi-image prescription upload
-- [ ] Advanced analytics dashboard
-- [ ] Medicine search with autocomplete
-- [ ] Order cancellation by customer
-- [ ] Inventory reports export (PDF/Excel)
-- [ ] Dark mode support
+### Backend Tests
+```bash
+cd backend
+npm test
+```
 
-## Contributing
+### Frontend Tests
+```bash
+cd frontend
+npm test
+```
+
+### Mobile Tests
+```bash
+cd mobile
+npm test
+```
+
+## 📈 Analytics & Monitoring
+
+### System Metrics
+- Real-time order tracking
+- Inventory monitoring
+- User activity analytics
+- Performance monitoring
+- Error tracking and logging
+
+### Business Intelligence
+- Sales analytics
+- Customer behavior insights
+- Supplier performance metrics
+- Prescription processing statistics
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Role-based access control
+- Password encryption with bcrypt
+- Input validation and sanitization
+- Rate limiting
+- CORS protection
+- File upload security
+
+## 🌐 Deployment
+
+### Production Environment
+- **Backend**: Cloud hosting (AWS/Azure/Heroku)
+- **Database**: MongoDB Atlas
+- **Frontend**: Static hosting (Vercel/Netlify)
+- **Mobile**: App Store and Google Play
+
+### CI/CD Pipeline
+- GitHub Actions for automated testing
+- Automated deployment on merge
+- Environment-specific configurations
+- Rollback capabilities
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
+## 📞 Support
 
-For support, email support@pharmacare.com or open an issue in the repository.
+For support and questions:
+- GitHub Issues: Report bugs and request features
+- Email: support@pharmacy-system.com
+- Documentation: Check the `/docs` folder
+
+## 🎯 Future Enhancements
+
+- [ ] Telemedicine integration
+- [ ] AI-powered medicine recommendations
+- [ ] Advanced analytics dashboard
+- [ ] Multi-language support
+- [ ] Integration with health systems
+- [ ] Blockchain for prescription security
+
+---
+
+**SE2020 Assignment Submission**  
+*Group: WMT (Web & Mobile Technologies)*  
+*Repository: https://github.com/IT23837294/WMT-mobile-app.git*
